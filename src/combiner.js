@@ -6,11 +6,11 @@ async function combinar (srtItaliano) {
     const parser = new SrtParser()
     const blocos = parser.fromSrt(srtItaliano)
     
-    const combinado = await Promise.all(blocos.map(async (bloco) => {
-        const traducao = await traduzir(bloco.text)
-        return {...bloco, text:bloco.text + '\n' + traducao }
-    }))
-    return parser.toSrt(combinado)
+   for (const bloco of blocos.slice(0, 20)) {
+    const traducao = await traduzir(bloco.text)
+    bloco.text = bloco.text + '\n' + traducao
+   }
+   return parser.toSrt(blocos)
 }
 
 module.exports = { combinar }
