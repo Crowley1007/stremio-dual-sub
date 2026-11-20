@@ -40,7 +40,5 @@ builder.defineSubtitlesHandler(async function (args) {
 
 });
 
-
-
 serveHTTP(builder.getInterface(), { port: 7000, static: '/legendas' })
 
