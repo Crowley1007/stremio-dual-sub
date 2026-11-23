@@ -1,11 +1,11 @@
 # Stremio Dual Sub
 
 Add-on para o Stremio que exibe legenda dupla: o idioma original (italiano)
-em cima e a tradução (português) embaixo, para aprender idiomas assistindo.
+em cima e a tradução (português) embaixo, para estudar assistindo.
 
 ## Como funciona
 
-(coloca aqui o fluxograma: ![Fluxo](fluxograma.png))
+
 
 ## Como rodar
 

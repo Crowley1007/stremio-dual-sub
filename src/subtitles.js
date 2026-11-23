@@ -6,8 +6,18 @@ const gunzip = promisify(zlib.gunzip)
 
 
 async function searchsubtitle(imdbid) {
+    const parts = id.split(':');
+    const imdbId = parts[0];
+    const season = parts[1];
+    const episode = parts[2];
     const idclear = imdbid.slice(2);
-    const response = await fetch (`https://rest.opensubtitles.org/search/imdbid-${idclear}/sublanguageid-ita`)
+    let urlApi = `https://rest.opensubtitles.org/search/imdbid-${idclear}/sublanguageid-ita`;
+    if (season && episode) {
+        urlApi += `\season-${season}/episode-${episode}`;
+    }
+    const response = await fetch(urlApi, {
+        headers: { 'User-agent': 'TemporaryUserAgent' }
+    })
     const data = await response.json()
     console.log(data)
     const srtLegendas = data.filter(item => item.SubFormat === 'srt')
@@ -18,5 +28,5 @@ async function searchsubtitle(imdbid) {
     return descompactado.toString('utf-8')
 }
 
-module.exports = {searchsubtitle}
+module.exports = { searchsubtitle }
 
