@@ -14,20 +14,23 @@ const builder = new addonBuilder({
     idPrefixes: ['tt']
 })
 
-builder.defineSubtitlesHandler(async function (args) {
-    const { id, type } = args;
-    console.log(`Subtitle request received id: ${id} (${type})`);
+builder.defineSubtitlesHandler(async function ({type, id, extra}) {
+ 
     try {
-        const legendaItaliano = await searchsubtitle(id);
+        const legendaItaliano = await searchsubtitle(id, extra?.filename);
+        const safeId = id.replace(/:/g, '_');
+        if (!legendaItaliano) {
+            return {subtitles: []};
+        }
         const gerarsrt = await combinar(legendaItaliano);
         console.log('---legenda baixada---');
         console.log(gerarsrt.substring(0, 500));
         console.log('----------------------');
-        fs.writeFileSync ( `legendas/${id}.srt`, gerarsrt )
+        fs.writeFileSync ( `legendas/${safeId}.srt`, gerarsrt )
 
         return { subtitles: [{
             id: id,
-            url: `http://127.0.0.1:7000/legendas/${id}.srt`,
+            url: `http://127.0.0.1:7000/legendas/${safeId}.srt`,
             lang: 'ita'
         }] };
 

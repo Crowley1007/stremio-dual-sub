@@ -1,9 +1,17 @@
 const { combinar } = require('./combiner')
+const { subtitle, searchsubtitle } = require('./subtitles')
 
-combinar(`1
-00:01:23,400 --> 00:01:26,800
-Ciao, come stai?
+async function testelegenda() {
+    const imdbid = 'tt0209144'
+    const filename = 'Memento.2000.1080p.BluRay.x264.mp4';
 
-2
-00:01:27,000 --> 00:01:29,500
-Sto bene, grazie!`).then(resultado => console.log(resultado))
+    console.log('looking for subtitle like', filename);
+    const legendaSrt = await searchsubtitle(imdbid, filename);;
+if (legendaSrt) {
+    console.log('Subtitle success found: \n');
+    console.log(legendaSrt.slice (0,300));
+} else {
+    console.log ('not found subtitle');
+}
+}
+testelegenda();
