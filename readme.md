@@ -9,7 +9,12 @@ em cima e a tradução (português) embaixo, para estudar assistindo.
 
 ## Como rodar
 
-(passos: npm install, node src/addon.js, instalar no Stremio)
+passos: 
+1. npm install
+2. instalar no Stremio ( se for local utlizar http://127.0.0.1:7000/manifest.json para instalar extensao no stremio )
+3. terminal 1: & "C:\Users\Krist\AppData\Local\Programs\Python\Python313\Scripts\libretranslate.exe" --update-models --load-only en,it,pb
+4. terminal 2: node src/addon.js
+)
 
 ## Melhorias futuras
 

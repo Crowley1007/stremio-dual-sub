@@ -19,7 +19,7 @@ async function combinar(srtItaliano) {
 
     lote.forEach((bloco, index) => {
       const traducao = traducoes[index] || bloco.text;
-      bloco.text = `${bloco.text}\n${traducao}`;
+      bloco.text = `${bloco.text}\n<font color="yellow">${traducao}</font>`;
     });
   }
 
