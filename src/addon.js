@@ -26,6 +26,7 @@ builder.defineSubtitlesHandler(async function ({type, id, extra}) {
         console.log('---legenda baixada---');
         console.log(gerarsrt.substring(0, 500));
         console.log('----------------------');
+        fs.mkdirSync('legendas', { recursive: true });
         fs.writeFileSync ( `legendas/${safeId}.srt`, gerarsrt )
 
         return { subtitles: [{
